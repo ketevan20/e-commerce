@@ -1,5 +1,5 @@
 import { Heart } from 'lucide-react'
-import React from 'react'
+import Image from 'next/image';
 
 const ProductCard = ({ product }: { product: any }) => {
     const hasDiscount =
@@ -7,12 +7,18 @@ const ProductCard = ({ product }: { product: any }) => {
 
     const originalPrice = product.inventory[0].list_price;
     const finalPrice = product.inventory[0].sale_price;
-    const discountPercentage = product.inventory[0].discount_percentage;
+    const discountPercentage = product.inventory[0].discount_percentage || product.inventory[0].discount;
 
     return (
         <div className='flex flex-col gap-4'>
             <div className='relative h-80 w-full bg-gray-500 overflow-hidden'>
-                <img src={product.images[0].image_url} alt={product.name} className='w-full h-full object-cover' />
+                {/* <Image fill src={product.images[0].image_url} alt={product.name} className='w-full h-full object-cover' /> */}
+                <Image
+                    fill
+                    src={product.images[0].image_url}
+                    alt={product.name}
+                    className="object-cover"
+                />
                 {
                     hasDiscount && (
                         <div className='absolute top-2 right-2 bg-red-600 px-2 py-1 rounded-md'>
