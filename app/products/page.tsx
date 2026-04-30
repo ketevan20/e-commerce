@@ -8,18 +8,9 @@ type SearchParams = Promise<{
 }>
 
 const page = async ({ searchParams }: { searchParams: SearchParams }) => {
-  const { category, collection, page } = await searchParams
-
-  const { data, pagination } = await getProducts({
-    category,
-    collection,
-    page: page ?? 1,
-    per_page: 8,
-  })
-
   return (
     <div>
-      <Products products={data} pagination={pagination}/>
+      <Products searchParams={searchParams} />
     </div>
   )
 }
