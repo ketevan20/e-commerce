@@ -1,17 +1,11 @@
 import Products from '@/components/organisms/Products/Products'
-import { getProducts } from '../../lib/api'
+import { Suspense } from 'react'
 
-type SearchParams = Promise<{
-  category?: string
-  collection?: string
-  page?: string
-}>
-
-const page = async ({ searchParams }: { searchParams: SearchParams }) => {
+const page = async () => {
   return (
-    <div>
-      <Products searchParams={searchParams} />
-    </div>
+    <Suspense fallback={<div>Loading...</div>}>
+      <Products />
+    </Suspense>
   )
 }
 
