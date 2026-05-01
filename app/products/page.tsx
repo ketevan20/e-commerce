@@ -7,7 +7,7 @@ type SearchParams = Promise<{
   page?: string
 }>
 
-const page = async ({ searchParams }: { searchParams: any }) => {
+const page = async ({ searchParams }: { searchParams: SearchParams }) => {
   return (
     <div>
       <Products searchParams={searchParams} />
