@@ -1,15 +1,12 @@
 const BASE = 'https://www.greatfrontend.com/api/projects/challenges/e-commerce'
 
 function buildUrl(path: string, params: any = {}) {
-    console.log(params);
     const clean = Object.fromEntries(
         Object.entries(params)
             .filter(([_, v]) => v != null && v !== '')
             .map(([k, v]) => [k, String(v)])
     ) as Record<string, string>;
-    console.log(clean);
     const qs = new URLSearchParams(clean).toString();
-    console.log(qs);
     return `${BASE}${path}${qs ? '?' + qs : ''}`;
 }
 
@@ -35,4 +32,20 @@ export async function getProductReviews(id: string, params: any = {}) {
     })
     if(!res.ok) throw new Error(`Reviews not found for product: ${id}`);
     return res.json();
+}
+
+export async function getCategories() {
+    const res = await fetch(`${BASE}/categories`, {
+        next: { revalidate: 60 }
+    })
+    if(!res.ok) throw new Error('Failed to fetch categories');
+    return res.json();  
+}
+
+export async function getCollections() {
+    const res = await fetch(BASE + '/collections', {
+        next: { revalidate: 60 }
+    })
+    if(!res.ok) throw new Error('Failed to fetch collections');
+    return res.json();  
 }

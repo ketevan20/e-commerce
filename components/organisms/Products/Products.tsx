@@ -1,4 +1,5 @@
 'use client'
+import FilterProducts from '@/components/molecules/FilterProducts/FilterProducts'
 import LoadProducts from '@/components/molecules/LoadProducts/LoadProducts'
 import ProductsGrid from '@/components/molecules/ProductsGrid/ProductsGrid'
 import { getProducts } from '@/lib/api'
@@ -11,13 +12,23 @@ const Products = ({ searchParams }: { searchParams: any }) => {
   const isFirstRender = useRef(true)
 
   useEffect(() => {
+    console.log(searchParams);
     setAllProducts([])
+    setPagination(null)
     setCurrentPage(1)
-    isFirstRender.current = true
-  }, [searchParams.category, searchParams.collection])
+
+    getProducts({ ...searchParams.value, page: 1, per_page: 8 })
+      .then(({ data, pagination }) => {
+        setAllProducts(data)
+        setPagination(pagination)
+      })
+  }, [searchParams]) 
 
   useEffect(() => {
-    getProducts({ ...searchParams, page: currentPage, per_page: 8 })
+    console.log(searchParams);
+    if (currentPage === 1) return 
+
+    getProducts({ ...searchParams.value, page: currentPage, per_page: 8 })
       .then(({ data, pagination }) => {
         setAllProducts(prev => [...prev, ...data])
         setPagination(pagination)
@@ -26,10 +37,9 @@ const Products = ({ searchParams }: { searchParams: any }) => {
 
   return (
     <div>
+      <FilterProducts />
       <ProductsGrid products={allProducts} />
-      {pagination?.has_more && (
-        <LoadProducts setCurrentPage={setCurrentPage} />
-      )}
+      {pagination?.has_more && (<LoadProducts setCurrentPage={setCurrentPage} />)}
     </div>
   )
 }
