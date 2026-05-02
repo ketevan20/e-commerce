@@ -38,7 +38,7 @@ const Products = () => {
   }, [currentPage])
 
   return (
-    <div>
+    <div className="px-6 md:px-10">
       <FilterProducts />
       <ProductsGrid products={allProducts} />
       {pagination?.has_more && (<LoadProducts setCurrentPage={setCurrentPage} />)}

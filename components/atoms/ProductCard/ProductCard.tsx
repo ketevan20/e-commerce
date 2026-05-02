@@ -1,5 +1,6 @@
 import { Heart } from 'lucide-react'
 import Image from 'next/image';
+import Link from 'next/link';
 
 const ProductCard = ({ product }: { product: any }) => {
     const hasDiscount =
@@ -11,13 +12,13 @@ const ProductCard = ({ product }: { product: any }) => {
 
     return (
         <div className='flex flex-col gap-4'>
-            <div className='relative h-80 w-full bg-gray-500 overflow-hidden'>
+            <Link href={`/products/${product.product_id}`} className='relative h-80 w-full bg-gray-500 overflow-hidden cursor-pointer'>
                 {/* <Image fill src={product.images[0].image_url} alt={product.name} className='w-full h-full object-cover' /> */}
                 <Image
                     fill
                     src={product.images[0].image_url}
                     alt={product.name}
-                    className="object-cover"
+                    className="object-cover hover:scale-105 transition-transform duration-300"
                 />
                 {
                     hasDiscount && (
@@ -26,10 +27,10 @@ const ProductCard = ({ product }: { product: any }) => {
                         </div>
                     )
                 }
-            </div>
+            </Link>
             <div className='flex flex-col gap-2'>
                 <div className='flex justify-between items-center'>
-                    <h2 className='bold'>{product.name}</h2>
+                    <Link href={`/products/${product.product_id}`} className='bold hover:underline cursor-pointer'>{product.name}</Link>
                     <button>
                         <Heart size={18} />
                     </button>

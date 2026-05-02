@@ -35,7 +35,7 @@ const FilterProducts = () => {
 
     return (
         <div className="w-full bg-white border-b border-neutral-200 mb-10">
-            <div className="max-w-7xl mx-auto px-4">
+            <div className="max-w-7xl mx-auto">
                 <div className="flex items-center justify-between border-b border-neutral-100">
                     <nav className="flex space-x-8 overflow-x-auto no-scrollbar">
                         <button
