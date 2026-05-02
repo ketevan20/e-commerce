@@ -7,7 +7,7 @@ const Footer = () => {
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
   return (
-    <footer className="w-full bg-[#0a0a0a] text-white mt-24 relative">
+    <footer className="w-full bg-[#0a0a0a] text-white relative">
       
       <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-3">
         <button 
@@ -21,7 +21,7 @@ const Footer = () => {
         </span>
       </div>
 
-      <div className="max-w-7xl mx-auto px-10 pt-32 pb-12">
+      <div className="mx-auto px-10 pt-32 pb-12">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-16 border-b border-neutral-900 pb-16">
           
           <div className="md:col-span-5 space-y-6">

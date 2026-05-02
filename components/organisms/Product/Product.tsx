@@ -36,7 +36,7 @@ const Product = () => {
   }, [productId, reviewsPage])
 
   return (
-    <div className='px-6 md:px-10'>
+    <div className='px-6 md:px-10 mb-24'>
       <NavigationLinks />
       <ProductDetails product={product} />
       <ProductReviews reviews={reviews} setPage={setReviewsPage} />

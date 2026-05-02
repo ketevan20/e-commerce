@@ -1,12 +1,8 @@
-'use client';
-
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Heart, Plus, Minus, Star } from 'lucide-react';
 
 const ProductDetails = ({ product}: { product: any; }) => {
-    if (!product) return <div className="p-20 text-center uppercase tracking-widest font-light">Product loading...</div>;
-
     const [selectedColor, setSelectedColor] = useState<string>("");
     const [openInfoIndex, setOpenInfoIndex] = useState<number | null>(0);
     const [modalImage, setModalImage] = useState<string | null>(null);
@@ -16,6 +12,8 @@ const ProductDetails = ({ product}: { product: any; }) => {
             setSelectedColor(product.colors[0]);
         }
     }, [product]);
+
+    if (!product) return null;
 
     const filteredImages = product?.images?.filter((img: any) => img.color === selectedColor) || [];
     const mainImage = filteredImages[0]?.image_url || product?.images?.[0]?.image_url;
@@ -67,7 +65,7 @@ const ProductDetails = ({ product}: { product: any; }) => {
                 <div className='w-full md:w-[40%] flex flex-col gap-8'>
                     <div className='flex flex-col gap-2'>
                         <div className='flex justify-between items-start'>
-                            <h1 className='text-3xl font-bold tracking-tight uppercase'>{product.name}</h1>
+                            <h1 className='text-3xl font-bold tracking-tight'>{product.name}</h1>
                             {/* <button className="p-2 hover:bg-gray-100 rounded-full transition-colors">
                             <Heart size={24} />
                         </button> */}
@@ -78,7 +76,7 @@ const ProductDetails = ({ product}: { product: any; }) => {
                                 <Star
                                     key={i}
                                     size={14}
-                                    className={i < Math.floor(product.rating) ? "fill-black text-black" : "text-gray-300"}
+                                    className={i < Math.floor(product.rating) ? "fill-amber-500 text-amber-500" : "text-gray-300"}
                                 />
                             ))}
                             <span className="text-xs text-gray-500 ml-2">({product.reviews} reviews)</span>
