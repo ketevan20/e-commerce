@@ -1,13 +1,13 @@
+import ProductDetailsSkeleton from '@/components/atoms/ProductDetailsSkeleton/ProductDetailSkeleton';
 import { Star } from 'lucide-react';
 import Image from 'next/image';
-import React from 'react'
 
 const ProductReviews = ({reviews, setPage}: { reviews: any; setPage: any }) => {
     return (
         <div>
             {reviews && reviews.aggregate ? (
                 <div className='mt-20 border-t border-black pt-16'>
-                    <h2 className='text-2xl font-bold uppercase tracking-tighter mb-12'>Customer Reviews</h2>
+                    <h2 className='text-2xl font-bold tracking-tighter mb-12'>Customer Reviews</h2>
 
                     <div className='flex flex-col lg:flex-row gap-16'>
                         <div className='w-full lg:w-1/3 flex flex-col gap-6'>
@@ -21,7 +21,7 @@ const ProductReviews = ({reviews, setPage}: { reviews: any; setPage: any }) => {
                                             <Star
                                                 key={i}
                                                 size={18}
-                                                className={i < Math.floor(reviews.aggregate.rating) ? "fill-black" : "text-gray-300"}
+                                                className={i < Math.floor(reviews.aggregate.rating) ? "fill-amber-500 text-amber-500" : "text-gray-300"}
                                             />
                                         ))}
                                     </div>
@@ -68,8 +68,7 @@ const ProductReviews = ({reviews, setPage}: { reviews: any; setPage: any }) => {
                                                             {review.user.name
                                                                 .split(' ')
                                                                 .map((n: string) => n[0])
-                                                                .join('')
-                                                                .toUpperCase()}
+                                                                .join('')}
                                                         </div>
                                                     )}
                                                 </div>
@@ -93,7 +92,7 @@ const ProductReviews = ({reviews, setPage}: { reviews: any; setPage: any }) => {
                                                     <Star
                                                         key={i}
                                                         size={12}
-                                                        className={i < review.rating ? "fill-black" : "text-gray-200"}
+                                                        className={i < review.rating ? "fill-amber-500 text-amber-500" : "text-gray-200"}
                                                     />
                                                 ))}
                                             </div>
@@ -128,11 +127,7 @@ const ProductReviews = ({reviews, setPage}: { reviews: any; setPage: any }) => {
                     </div>
                 </div>
             ) : (
-                <div className="mt-20 border-t border-gray-100 pt-16 text-center">
-                    <p className="text-[10px] uppercase tracking-[0.4em] text-gray-400 animate-pulse">
-                        Fetching verified reviews...
-                    </p>
-                </div>
+                <ProductDetailsSkeleton />
             )}
         </div>
     )

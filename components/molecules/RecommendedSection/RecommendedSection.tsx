@@ -4,8 +4,6 @@ import Link from 'next/link';
 import React, { useEffect, useState } from 'react'
 
 const RecommendedSection = ({ collection }: { collection: any }) => {
-    if (!collection) return <div className="p-20 text-center uppercase tracking-widest font-light">Loading Recommended Products...</div>
-
     const [products, setProducts] = useState<any[]>([]);
 
     useEffect(() => {
@@ -15,11 +13,13 @@ const RecommendedSection = ({ collection }: { collection: any }) => {
         }).catch(console.error);
     }, [collection]);
 
+    if (!collection) return null;
+
     return (
         <div className='mt-32 border-t border-gray-100 pt-20 pb-10'>
             <div className='flex justify-between items-end mb-12'>
                 <div className='flex flex-col gap-2'>
-                    <span className='text-[10px] uppercase tracking-[0.4em] text-gray-400 font-bold'>You might also like</span>
+                    <span className='text-[10px] tracking-[0.4em] text-gray-400 font-bold'>You might also like</span>
                     <h2 className='text-3xl font-bold tracking-tighter'>Recommended from {collection.name}</h2>
                 </div>
             </div>
