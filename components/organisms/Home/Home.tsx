@@ -36,7 +36,7 @@ const Home = () => {
           </div>
 
           <div className="hidden md:block">
-            <p className="text-white/50 text-[10px] text-right leading-relaxed lowercase tracking-tight max-w-[180px]">
+            <p className="text-white/50 text-[10px] text-right leading-relaxed lowercase tracking-tight max-w-45">
               structural silhouettes <br /> designed for permanence.
             </p>
           </div>

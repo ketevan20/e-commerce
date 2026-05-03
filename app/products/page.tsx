@@ -4,9 +4,7 @@ import { Suspense } from 'react'
 
 const page = async () => {
   return (
-    <Suspense fallback={<ProductsSkeleton />}>
-      <Products />
-    </Suspense>
+    <Products />
   )
 }
 

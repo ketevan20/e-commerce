@@ -127,7 +127,8 @@ const ProductReviews = ({reviews, setPage}: { reviews: any; setPage: any }) => {
                     </div>
                 </div>
             ) : (
-                <ProductDetailsSkeleton />
+                ''
+                // <ProductDetailsSkeleton />
             )}
         </div>
     )
