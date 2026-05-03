@@ -1,21 +1,24 @@
 'use client'
-import React from 'react'
 import Link from 'next/link'
-import { ShoppingBag, Search, User, Heart } from 'lucide-react'
+import { ShoppingBag } from 'lucide-react'
+import { usePathname } from 'next/navigation'
 
 const Header = () => {
+  const pathname = usePathname();
+  // console.log('Current pathname:', pathname);
+
   return (
     <header className="w-full sticky top-0 z-50 transition-all duration-500">
       <div className="w-full bg-white/80 backdrop-blur-xl border-b border-neutral-100 shadow-[0_4px_20px_-10px_rgba(0,0,0,0.08)]">
         <div className="mx-auto px-6 md:px-10 h-16 md:h-20 flex justify-between items-center">
 
           <nav className="flex items-center gap-10">
-            <Link href="/products" className="text-[10px] uppercase tracking-[0.3em] font-bold text-neutral-400 hover:text-black transition-all duration-300">Products</Link>
+            <Link href="/products" className={`${pathname === '/products' ? 'text-black' : 'text-neutral-400'} text-[10px] uppercase tracking-[0.3em] font-bold  hover:text-black transition-all duration-300`}>Products</Link>
           </nav>
 
           <Link href="/" className="absolute left-1/2 -translate-x-1/2 group flex items-center gap-2">
             <div className="flex flex-col items-center">
-              <span className="text-2xl md:text-3xl font-serif font-light leading-none transition-all duration-700 group-hover:tracking-[0.1em]">
+              <span className="text-2xl md:text-3xl font-serif font-light leading-none transition-all duration-700 group-hover:tracking-windest">
                 S<span className="text-[10px] font-sans font-bold tracking-[0.5em] uppercase align-middle ml-1">tudio</span>
               </span>
               <span className="text-[7px] font-black uppercase tracking-[0.6em] text-neutral-300 mt-0.5 group-hover:text-black transition-colors duration-500">
