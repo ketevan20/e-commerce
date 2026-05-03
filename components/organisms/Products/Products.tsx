@@ -1,4 +1,5 @@
 'use client'
+import ProductsSkeleton from '@/components/atoms/ProductsSkeleton/ProductsSkeleton'
 import FilterProducts from '@/components/molecules/FilterProducts/FilterProducts'
 import LoadProducts from '@/components/molecules/LoadProducts/LoadProducts'
 import ProductsGrid from '@/components/molecules/ProductsGrid/ProductsGrid'
@@ -11,11 +12,13 @@ const Products = () => {
   const category = searchParams.get('category')
   const collection = searchParams.get('collection')
 
+  const [isLoading, setIsLoading] = useState(true)
   const [allProducts, setAllProducts] = useState<any[]>([])
   const [pagination, setPagination] = useState<any>(null)
   const [currentPage, setCurrentPage] = useState(1)
 
   useEffect(() => {
+    setIsLoading(true)
     setAllProducts([])
     setPagination(null)
     setCurrentPage(1)
@@ -25,6 +28,8 @@ const Products = () => {
         setAllProducts(data)
         setPagination(pagination)
       })
+      .catch(err => console.error(err))
+      .finally(() => setIsLoading(false))
   }, [category, collection])
 
   useEffect(() => {
@@ -35,10 +40,13 @@ const Products = () => {
         setAllProducts(prev => [...prev, ...data])
         setPagination(pagination)
       })
+      .catch(err => console.error(err))
   }, [currentPage])
 
+  if (isLoading) return <ProductsSkeleton />
+
   return (
-    <div className="px-6 md:px-10">
+    <div className="px-6 md:px-10 mb-24">
       <FilterProducts />
       <ProductsGrid products={allProducts} />
       {pagination?.has_more && (<LoadProducts setCurrentPage={setCurrentPage} />)}
